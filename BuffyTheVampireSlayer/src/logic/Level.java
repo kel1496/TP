@@ -18,6 +18,36 @@ public enum Level {
 
 	// TODO fill your code
 
+	public String GetName () {
+		
+		return this.name;
+		
+	}
+	
+	public int GetNVampires () {
+		
+		return this.numberOfVampires;
+		
+	}
+	
+	public double GetVFreq () {
+		
+		return this.vampireFrequency;
+		
+	}
+	
+	public int GetX () {
+		
+		return this.dim_x;
+		
+	}
+
+	public int GetY () {
+		
+		return this.dim_y;
+		
+	}
+	
     public static Level parse(String inputString) {
         for (Level level : Level.values())
             if (level.name().equalsIgnoreCase(inputString)) 

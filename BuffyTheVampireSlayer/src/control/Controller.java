@@ -21,11 +21,11 @@ public class Controller {
 	public static final String invalidPositionMsg = String.format("Invalid position");
 
     private Game game;
-    private Scanner scanner;
+    private Scanner in;
     
     public Controller(Game game, Scanner scanner) {
 	    this.game = game;
-	    this.scanner = scanner;
+	    this.in = scanner;
     }
     
     public void  printGame() {
@@ -34,6 +34,19 @@ public class Controller {
     
     public void run() {
 		// TODO fill your code
+    	String comando;
+		int x , y;
+		boolean empty, pass = false;
+		int pos;
+		
+		comando = this.in.nextLine();
+		comando = this.in.trim();
+		comando = this.in.toLowerCase();
+		
+		while ((com != "exit") && (game.GetActive())){
+		
+		}
+		}
     }
 
 }
