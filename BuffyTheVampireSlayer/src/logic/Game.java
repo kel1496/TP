@@ -17,7 +17,7 @@ public class Game {
 	
 	private int coins;
 	private int numCycles;
-	private int seed;
+	private long seed;
 	
 	private boolean Active;
 	private Random rand;
@@ -26,12 +26,18 @@ public class Game {
 	private GamePrinter GPrinter;
 	private Level level;
 	
-	public Game (String[] args, GameObjectBoard GOB){
+	public Game (String[] args){
+		
+		if (args.length > 1) {
+			if (Long.parseLong(args[1]) != 0)
+					this.seed = Long.parseLong(args[1]);
+			else
+				this.seed = System.currentTimeMillis();
+		}
 		
 		this.rand = new Random(this.seed);
 		this.numCycles = 0;
 		this.Active = true;
-		this.GOB = GOB;
 		this.level = Level.parse(args[0]);
 				
 	}
@@ -53,7 +59,7 @@ public class Game {
 		System.out.println("Vampires remaining : " + this.VampiressRemaining());
 		System.out.println("###########################");
 		
-		System.out.println(this.GPrinter = new GamePrinter (this, 4, 8));
+		System.out.println(this.GPrinter = new GamePrinter (this, this.level.GetX(), this.level.GetY()));
 		
 		System.out.print("Command > ");
 		

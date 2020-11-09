@@ -3,6 +3,8 @@ import java.util.Random;
 
 import control.Controller;
 
+import logic.Game;
+
 public class BuffyVampireSlayer {
 	
 	public static void main(String[] args) { 
