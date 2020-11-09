@@ -2,21 +2,73 @@ package logic;
 
 import logic.lists.*;
 
-import java.util.Random;
-
-import logic.gameObjects.*;
 
 public class GameObjectBoard {
 
 	private SlayerList Slist;
 	private VampireList Vlist;
 	
-	public GameObjectBoard (String[] args){
+	public GameObjectBoard (Game game){
 		
-		this.Slist = new SlayerList(this);
-		this.Vlist = new VampireList(this);
+		this.Slist = new SlayerList(game);
+		this.Vlist = new VampireList(game);
 				
 	}
 	
+	public void addSlayer(int x, int y) {
+		Slist.addSlayer(x, y);
+	}
+
+	public void addVampire(int randomArbitrary, int randomArbitrary2) {
+		Vlist.addVampire(randomArbitrary, randomArbitrary2);
+		
+	}
+	
+	public void update() {
+		Slist.Update();
+		Vlist.Update();
+	}
+	
+	public int GetSlayerCount() {
+		return Slist.GetPScount();
+	}
+
+	public boolean vampiroEncontrado(int x, int y) {
+		
+		return Vlist.vampiroEncontrado(x, y);
+	}
+
+
+	public boolean slayerEncontrado(int x, int y) {
+		
+		return Slist.slayerEncontrado(x, y);
+	}
+
+	public int posicionSlayer(int x, int y) {
+		
+		return Slist.pos(x, y);  
+	}
+	
+	public int posicionVampiro(int x, int y) {
+		
+		return Vlist.pos(x, y);
+	}
+
+	public void decVidaSlayer(int posicionSlayer, int dmg) {
+		Slist.decHP(posicionSlayer, dmg);
+	}
+
+	public void decVidaVamp(int posicionVampiro, int dmg) {
+		
+		Vlist.decHP(posicionVampiro, dmg);		
+	}
+	
+	public boolean vacio(int x, int y) {
+		boolean empty = false;
+		if (!slayerEncontrado(x, y) && !vampiroEncontrado(x, y)) {
+			empty = true;
+		}
+		return empty;
+	}
 	
 }

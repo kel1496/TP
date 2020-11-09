@@ -9,10 +9,10 @@ public class Vampire {
 	private int HP;
 	private int velocidad;
 	private int dmg;
-	private int pos;
 	private int cicloEntrada;
 	private int x;
 	private int y;
+	private int pos;
 	
 	public Vampire(int pos, int x, int y, Game game){
 			
@@ -20,42 +20,28 @@ public class Vampire {
 			this.HP = 5;
 			this.dmg = 1;
 			this.velocidad = 2;
-			this.pos = pos;
-			this.cicloEntrada = game.GetCiclo();
-			this.x = 7;
+			this.cicloEntrada = 0;
+			this.x = 6;
 			this.y = y;	
 	}
 	
 	public void Update(){
 			
-		boolean movimiento = true;
-		int slayerCount, slayerY, slayerX;
-	
-		
-		slayerCount = game.GetSCount();
-		
-		for (int i = 0; i < slayerCount; i++){
+		cicloEntrada += 1;
+
+		if (game.vacio(x, y - 1) && cicloEntrada % 2 == 0) {
+			this.y = this.y - velocidad;
 			
-			slayerX = game.GetSx(i);
-			slayerY = game.GetSy(i);
+		} 
+		else if (game.vacio(x, y - 1) && cicloEntrada % 2 != 0) {
 			
-			if ((this.y == slayerY) && ((this.x - 1) == slayerX)){
-				
-				game.ReducirSHP(i, this.dmg);
-				movimiento = false;
-				
+			
+		} else {
+			
+			if (!game.vampiroCerca(x,y)) {
+				game.attackToSlayer(x, y - 1, dmg);
 			}
-			
-		}
-		
-		
-		if (movimiento){
-			if(game.GetCiclo() - this.cicloEntrada) % this.velocidad ) == 0)
-			
-			this.x --;
-			
-		}
-			
+		}	
 		
 	}
 		
@@ -72,18 +58,6 @@ public class Vampire {
 		
 	}
 	
-	
-	public void ReducirHP (int dmg){
-		
-		this.HP -= dmg;
-		
-		if (this.HP == 0){
-			
-			game.DelV(this.pos);
-			
-		}
-				
-	}
 
 	public void CambiarPos(int i){
 		
@@ -100,6 +74,11 @@ public class Vampire {
 		
 		return a;
 		
+	}
+
+	public void decHP(int dmg2) {
+		// TODO Auto-generated method stub
+		HP -= dmg;
 	}
 	
 }

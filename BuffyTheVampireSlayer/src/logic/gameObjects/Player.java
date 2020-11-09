@@ -1,8 +1,8 @@
 package logic.gameObjects;
 
 import java.util.Random;
-
 import logic.Game;
+
 
 public class Player {
 
@@ -10,16 +10,25 @@ public class Player {
 	private int coins;
 
 	
-	public Vampire(int pos, int x, int y, Game game){
+	public Player(){
 			
-			this.game = game;
-			this.HP = 5;
-			this.dmg = 1;
-			this.velocidad = 2;
-			this.pos = pos;
-			this.cicloEntrada = game.GetCiclo();
-			this.x = 7;
-			this.y = y;	
+		this.coins = 50;
+		this.rand = new Random(System.currentTimeMillis());
 	}
 	
+	public int GetCoins(){
+		return this.coins;
+	}
+	
+	public void SetCoins(int x){
+		this.coins = x;
+	}
+	
+	public Random GetRandom() {
+		return this.rand;
+	}
+	
+	public static boolean generateVampire(Game game) {
+		return game.getRandom().nextInt(10) < 10 * game.getLevel().GetVFreq();
+	}
 }

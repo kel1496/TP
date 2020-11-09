@@ -16,8 +16,6 @@ public enum Level {
 		this.dim_y = dim_y;
 	}
 
-	// TODO fill your code
-
 	public String GetName () {
 		
 		return this.name;
@@ -30,7 +28,7 @@ public enum Level {
 		
 	}
 	
-	public double GetVFreq () {
+	public double GetVFreq() {
 		
 		return this.vampireFrequency;
 		
