@@ -8,6 +8,7 @@ public class SlayerList {
 	private Game game;
 	private int numSlayer;
 	private Slayer[] lista;
+	private int count = 0;
 	
 	// Methods
 
@@ -30,22 +31,22 @@ public class SlayerList {
 		
 	}
 	
-	public void AddPeashooter(int x, int y){
+	public void addSlayer(int x, int y){
 		
-		this.lista[numSlayer] = new numSlayer(x, y, game, this.numSlayer);
+		this.lista[numSlayer] = new Slayer(x, y, game);
 		this.numSlayer ++;
 		
 	}
 
 	public int GetPSx (int i){
 
-		return this.list[i].GetPSx();
+		return this.lista[i].GetSx();
 		
 	}
 	
 	public int GetPSy (int i){
 
-		return this.lista[i].GetPSy();
+		return this.lista[i].GetSy();
 		
 	}
 	
@@ -57,7 +58,7 @@ public class SlayerList {
 	
 	public void DecreasePSHP(int i, int dmg){
 		
-		this.lista[i].DecreaseHP (dmg);
+		this.lista[i].DecreaseHP(dmg);
 		
 	}
 	
@@ -67,22 +68,58 @@ public class SlayerList {
 		
 	}
 	
-	public void DeleteS (int i){
+	public void DeleteS (int i) {
 		
 		this.numSlayer--;
 		
-		for (int j = i; j < this.numSlayer; j++){
+		for (int j = i; j < this.numSlayer; j++) {
 			
 			this.lista[j].CambiarPos(i - 1);
 			
 		}
 		
-		for (int j = i; j < this.numSlayer; j++){
+		for (int j = i; j < this.numSlayer; j++) {
 			
 			this.lista[j] = this.lista[j + 1];
 			
 		}
 		
 	}
+
+
+	public boolean slayerEncontrado(int x, int y) {
+		int i = 0;
+
+		boolean found = false;
+		while (i < count && !found) {
+			if ((lista[i].GetSx() == x) && (lista[i].GetSy() == y)) {
+				found = true;
+			} else {
+				i++;
+			}
+		}
+		return found;
+	}
+
+
+	public int pos(int x, int y) {
+		int i = 0;
+		
+		boolean found = false;
+		while (i < count && !found) {
+			if ((lista[i].GetSx() == x) && (lista[i].GetSy() == y)) {
+				found = true;
+			} else {
+				i++;
+			}
+		}
+		return i;
+	}
+
+
+	public void decHP(int posicionSlayer, int dmg) {
+		lista[posicionSlayer].DecreaseHP(dmg);
+	}
+
 	
 }
