@@ -19,6 +19,30 @@ public class GamePrinter {
 	
 	private void encodeGame(Game game) {
 		// TODO fill your code
+		board = new String[numRows][numCols];
+		
+		for (int i = 0; i < numRows; i++) {
+			
+			for (int j = 0; j < numCols; j++) {
+				
+				board[i][j] = space;
+				
+			}
+			
+		}
+		for (int i = 0; i < game.GetScount(); i++) {
+			
+			board[game.GetSy(i)][game.GetSx(i)] = game.StoString(i);
+			
+		}
+		
+		for (int i = 0; i < game.GetVcount(); i++) {
+			
+			board[game.GetVy(i)][game.GetVx(i)] = this.game.VtoString(i);
+
+		}
+		
+		toString();
 	}
 	
 	 public String toString() {
